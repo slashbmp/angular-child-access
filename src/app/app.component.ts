@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SweetChild } from "./child.component";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'access-child';
+
+  public childs: SweetChild[] = [];
+
+  private childDatas: any[] = [];
+
+  ngAfterViewInit() {
+	  this.childs = [];
+	  for (let i = 0; i < 5; i++) {
+		  let child = {
+			  "dataToChild": "I am child " + (i + 1)
+		  };
+		  this.childDatas.push(child);
+	  }
+  }
 }
