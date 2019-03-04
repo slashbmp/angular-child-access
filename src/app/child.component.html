@@ -1,1 +1,35 @@
-{{myTheName}}
+<h1># {{_index}}</h1>
+<form [formGroup]="myFormGroup">
+
+	<div class="form-group">
+		<div>
+			<label class="center-block">Charger ID: </label>
+			<input id="chargerId" class="form-control" formControlName="chargerId">
+			<div *ngIf="myFormGroup.controls['chargerId'].invalid && (myFormGroup.controls['chargerId'].dirty || myFormGroup.controls['chargerId'].touched)"
+				class="alert alert-danger">
+				<div *ngIf="myFormGroup.controls['chargerId'].errors.required">
+					Name is required.
+				</div>
+				<div *ngIf="myFormGroup.controls['chargerId'].errors.minlength">
+					Name must be at least 4 characters long.
+				</div>
+			</div>
+		</div>
+
+		<div>
+			<label class="center-block">Kios: </label>
+			<select id="kiosId" class="form-control" formControlName="kiosId">
+				<option value="">== Select ==</option>
+				<ng-container *ngFor="let kios of myKiosList"><option *ngIf="kios.enabled" value="{{kios.id}}">{{kios.name}}</option></ng-container>
+			</select>
+			<div *ngIf="myFormGroup.controls['kiosId'].invalid && (myFormGroup.controls['kiosId'].dirty || myFormGroup.controls['kiosId'].touched)"
+				class="alert alert-danger">
+				<div *ngIf="myFormGroup.controls['kiosId'].errors.required">
+					Kios is required.
+				</div>
+			</div>
+		</div>
+	</div>
+
+</form>
+<hr>
